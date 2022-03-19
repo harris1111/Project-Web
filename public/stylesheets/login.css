@@ -100,7 +100,9 @@ input[type="submit"]{
 
 input[type="submit"]:hover{
     border-color: #2691d9;
-    transition: .5s;
+    color: black;
+    background: white;
+    transition: .3s;
 }
 
 .signup{
