@@ -1,0 +1,163 @@
+<link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="/public/css/user/cart.css" />
+
+<h2 class="section-title">Shopping Cart</h2>
+<div class="container">
+    <div class="item-flex">
+        <!--Checkout Section-->
+        <section class="checkout">
+            <h2 class="section-heading">Payment Details</h2>
+            <div class="payment-form">
+                <div class="payment-method">
+                    <button class="method selected">
+                        <ion-icon name="card"></ion-icon>
+                        <span>Credit</span>
+                        <ion-icon class="checkmark fill" name="checkmark-circle"></ion-icon>
+                    </button>
+
+                    <button class="method">
+                        <ion-icon name="card"></ion-icon>
+                        <span>Paypal</span>
+                        <ion-icon class="checkmark" name="checkmark-circle-outline"></ion-icon>
+                    </button>
+                </div>
+
+                <form action="#">
+                    <div class="cardholder-name">
+                        <label for="cardholder-name" class="label-default">Cardholder Name</label>
+                        <input type="text" id="cardholder-name" name="cardholder-name" class="input-default">
+                    </div>
+
+                    <div class="card-number">
+                        <label for="card-number" class="label-default">Card Number</label>
+                        <input type="number" id="card-number" name="card-number" class="input-default">
+                    </div>
+
+                    <div class="input-flex">
+                        <div class="expire-date">
+                            <label for="expire-date" class="label-default">Expiration Date</label>
+                            <div class="input-flex">
+                                <input type="number" name="day" id="expire-date" placeholder="31" min="1" max="31" class="input-default">
+                                /
+                                <input type="number" name="month" id="expire-date" placeholder="12" min="1" max="12" class="input-default">
+
+                            </div>
+                        </div>
+
+                        <div class="cvv">
+                            <label for="cvv" class="label-default">CVV</label>
+                            <input type="number" id="cvv" name="cvv" class="input-default">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <button class="btn btn-primary">
+                <b>Pay</b> $ <span id="payAmount">2.15</span>
+            </button>
+        </section>
+
+        <!--Cart Section-->
+        <section class="cart">
+            <div class="cart-item-box">
+                <h2 class="section-heading">Order</h2>
+                <div class="product-card">
+                    <div class="card">
+                        <div class="img-box">
+                            <img src="/public/images/products/product1.jpg" alt="" width="80px" class="product-img">
+                        </div>
+
+                        <div class="detail">
+                            <h4 class="product-name">Item 1</h4>
+                            <div class="wrapper">
+                                <div class="product-qty">
+                                    <button id="decrement">
+                                        <ion-icon name="remove-outline"></ion-icon>
+                                    </button>
+
+                                    <span id="quantity">1</span>
+
+                                    <button id="increment">
+                                        <ion-icon name="add-outline"></ion-icon>
+                                    </button>
+                                </div>
+
+                                <div class="price">
+                                    $ <span id="price">1.25</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="product-close-btn">
+                            <ion-icon name="close-outline"></ion-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="card">
+                        <div class="img-box">
+                            <img src="/public/images/products/product2.jpg" alt="" width="80px" class="product-img">
+                        </div>
+
+                        <div class="detail">
+                            <h4 class="product-name">Item 2</h4>
+                            <div class="wrapper">
+                                <div class="product-qty">
+                                    <button id="decrement">
+                                        <ion-icon name="remove-outline"></ion-icon>
+                                    </button>
+
+                                    <span id="quantity">1</span>
+
+                                    <button id="increment">
+                                        <ion-icon name="add-outline"></ion-icon>
+                                    </button>
+                                </div>
+
+                                <div class="price">
+                                    $ <span id="price">1.80</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="product-close-btn">
+                            <ion-icon name="close-outline"></ion-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wrapper">
+                <div class="discount-token">
+                    <label for="discount-token" class="label-default">Gift Card/Discount</label>
+                    <div class="wrapper-flex">
+                        <input type="text" name="discount-token" id="discount-token" class="input-default">
+                        <button class="btn btn-outline">Apply</button>
+                    </div>
+                </div>
+
+                <div class="amount">
+                    <div class="subtotal">
+                        <span>Subtotal</span> <span id="subtotal">2.05</span>
+                    </div>
+
+                    <div class="tax">
+                        <span>Tax</span> <span id="tax">0.10</span>
+                    </div>
+
+                    <div class="shipping">
+                        <span>Shipping</span> <span id="shipping">2.05</span>
+                    </div>
+
+                    <div class="total">
+                        <span>Total</span> <span id="total">2.15</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

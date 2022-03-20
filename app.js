@@ -70,7 +70,13 @@ app.get('/admin/manage/users/detail', async function (req, res) {
   res.render('admin/userDetail', {layout: 'user'});
 });
 
+app.get('/user', async function (req, res) {
+  res.render('user/itemList', {layout: 'user'});
+});
 
+app.get('/user/cart', async function (req, res) {
+  res.render('user/cart', {layout: 'user'});
+});
 
 app.set('port',process.env.PORT || 3000);
 app.listen(app.get('port'), function () {
