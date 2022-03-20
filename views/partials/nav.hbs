@@ -1,0 +1,66 @@
+<nav class="myContainer navbar navbar-expand-lg navbar-light">
+  <a class="header__logo hide-for-mobile flex flex-ai-c" href="/">
+    <img
+      style="width: 20%;"
+      class="img-fluid"
+      {{!-- src="/public/images/logo-white-512-95.svg" --}}
+      src="/public/images/test.svg"
+     
+      alt="logo"
+      
+    />
+  </a>
+
+  <div class="header__content justify-content-between">
+    <a style="max-width: 3.5rem; margin-right: 10px" class="hide-for-desktop" href="/">
+      <img
+        class="img-fluid"
+        src="/public/images/logo-mini-128.png"
+        alt="logo"
+      /></a>
+    <form
+      id="search-area"
+      class="form-inline my-2 my-lg-0 d-flex"
+      method="GET"
+      action="/search"
+    >
+      <select id="optionCategory" style="width: 10rem; font-family: 'Lato'; border-radius: 0.25rem 0 0 0.25rem;" class="form-select form-select-sm" aria-label=".form-select-sm example">
+        <option style="display: none;" value="0" selected>Category</option>
+        <option value="0">None</option>
+        {{#each categories as |cat|}}
+          <option value="{{cat.catId}}">{{cat.catName}}</option>
+        {{/each}}
+      </select>
+      <input id="chosenCat" type="hidden" name="category">
+      <input
+        style="padding: 0.3rem 0.75rem; font-family: 'Lato'"
+        id="search-bar"
+        name="keyword"
+        class="header__input form-control"
+        type="search"
+        placeholder="Input keyword"
+        aria-label="Search"
+        required
+      />
+      <button style="padding: 0.3rem 0.5rem" class="btn header__btn header__search" type="submit">
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </button>
+    </form>
+    
+      <div class="dropdown hide-for-mobile">
+        <a
+          style="background: none"
+          class="btn btn-secondary dropdown-toggle"
+          role="button"
+          id="dropdownMenuButton1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="fa fa-user" aria-hidden="true"></i>
+          {{user.firstName}} {{user.lastName}}
+        </a>
+        
+        
+
+  </div>
+</nav>
