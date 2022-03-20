@@ -78,6 +78,10 @@ app.get('/user/cart', async function (req, res) {
   res.render('user/cart', {layout: 'user'});
 });
 
+app.get('/user/itemdetail', async function (req, res) {
+  res.render('user/itemDetails', {layout: 'user'});
+});
+
 app.set('port',process.env.PORT || 3000);
 app.listen(app.get('port'), function () {
   console.log(`Example app listening at http://localhost:${app.get('port')}`);
