@@ -1,0 +1,43 @@
+{{#section "stylesheets"}}
+  <link rel="stylesheet" href="/public/css/admin/manageCategory.css" />
+{{/section}}
+
+<div>
+  <h1 class="h3 fw-bold">Add Subcategory</h1>
+  <form method="post" action="/admin/manage/categories">
+    <div class="form-group">
+      <h2 class="h4">Parent Category:</h2>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="{{parentCategory.parentName}}"
+        readonly
+      />
+      <input
+        type="hidden"
+        value="{{parentCategory.parentID}}"
+        name="parentId"
+      />
+      <small id="emailHelp" class="form-text text-muted">This category will be
+        parent of your input category</small>
+    </div>
+    <br />
+    <div class="form-group">
+      <h2 class="h4">Subcategory:</h2>
+      <input
+        type="text"
+        class="form-control"
+        name="childName"
+        placeholder="Input here"
+      />
+      <input type="hidden" value="addChildCate" name="content" />
+    </div>
+    <br />
+
+    <div class="d-flex justify-content-center">
+      <button class="btn bg-primary text-white" type="submit">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

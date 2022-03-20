@@ -1,0 +1,96 @@
+{{#section "js"}}
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"
+  ></script>
+  <script src="/public/js/statistics.js"></script>
+  <script>
+    $('.addItem').on('click', function(e) { const id = $(this).data('id');
+    $('#txtProID').val(id); $('#frmAddItem').submit(); });
+  </script>
+{{/section}}
+<form action="/cart/add" method="post" id="frmAddItem">
+  <input type="hidden" id="txtProID" name="id" />
+  <input type="hidden" name="quantity" value="1" />
+</form>
+<div>
+  <div class="statistics__best-seller">
+    <div class="card shadow mt-5">
+      <h3 class="card-header bg-secondary text-center text-white">Top 10 sản
+        phẩm bán chạy nhất</h3>
+      <div
+        style="display: grid; grid-template-columns: repeat(5, 1fr)"
+        class="card-body row"
+      >
+        {{#each list as |entity|}}
+          <div class="col mb-3">
+            <div class="card h-100">
+              <a href="/products/detail/{{entity.item.MaSP}}">
+                <img
+                  class="card-img-top"
+                  src="/public/img/products/{{entity.item.MaSP}}.jpg"
+                  alt="{{entity.item.TenSP}}"
+                  title="{{entity.item.TenSP}}"
+                />
+              </a>
+
+              <div class="card-body">
+                <h5
+                  style="font-size: 14px;"
+                  class="card-title"
+                >{{entity.item.TenSP}}</h5>
+                <h5 class="card-title text-danger">{{format_number
+                    entity.item.DonGia
+                  }}</h5>
+                <div
+                  style="font-size: 12px;"
+                  class="alert alert-info fw-bold"
+                >Tổng số lượng đã bán:
+                  {{entity.soluong}}</div>
+
+              </div>
+              {{#if (isCustomer user.ViTri)}}
+                <div class="card-footer text-muted">
+
+                  <a
+                    data-id="{{entity.item.MaSP}}"
+                    class="btn btn-outline-danger addItem"
+                    href="javascript:;"
+                    role="button"
+                  >
+                    <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                  </a>
+                </div>
+              {{/if}}
+            </div>
+          </div>
+        {{/each}}
+
+      </div>
+    </div>
+  </div>
+  <div class="statistics__consumption">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card shadow mt-5">
+          <h3 class="card-header text-center bg-secondary text-white">Doanh thu
+            theo tháng</h3>
+          <div style="padding: 20px">
+            <span style="margin-right: 10px">Chọn năm</span>
+            <select
+              name="year"
+              id="select-year"
+              style="display: inline-block; width: fit-content"
+              class="form-control"
+              aria-label="Select year"
+            >
+              <option style="display: none;" value=""></option>
+              <option value="2020">2020</option>
+              <option value="2021">2021</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <canvas id="myChart"></canvas>
+  </div>
+</div>

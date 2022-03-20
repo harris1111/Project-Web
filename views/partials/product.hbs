@@ -1,0 +1,177 @@
+{{#if (isDisableProduct this.isDisable)}}
+  <div class="products__item">
+    <div class="products__item--content">
+      <figure class="products__item--img">
+        <a
+          href="/product?proId={{this.proId}}"
+          class="popover-test"
+          title="{{this.proName}}"
+          data-content="Popover body content is set in this attribute."
+          data-trigger="hover"
+        ><img src="{{this.secureUrl}}" class="img-fluid" style="object-fit: contain;"/>
+        </a>
+        <div
+          class="products__item--price text-primary"
+          style="margin-bottom: 10px;"
+        >
+          <span><i class="fa fa-usd" aria-hidden="true"></i>
+            {{this.currentPrice}}</span>
+        </div>
+
+        <div class="products__item--img--preview">
+          <a href="/product?proId={{this.proId}}">Quick view</a>
+        </div>
+        {{#if (isRecentlyUploaded this)}}
+          <span class="products__item--new">New</span>
+        {{/if}}
+        {{#if this.win}}
+          <span class="products__item--win"><i
+              style="font-size: 1rem"
+              class="fa fa-gavel"
+              aria-hidden="true"
+            ></i></span>
+        {{/if}}
+      </figure>
+
+      <div class="products__item--wrapper">
+        <div class="mb-2">
+          <h3 class="hide-overflow mb-0">{{this.proName}}<div>&nbsp;</div>
+          </h3>
+          <p style="font-size: 0.7rem; margin-bottom: 0"><i
+              class="fa fa-calendar"
+              aria-hidden="true"
+            ></i>
+            {{parseDate postDate}}</p>
+          <p style="font-size: 0.6rem;" class="text-danger mb-0"><i
+              class="fa fa-clock-o"
+              aria-hidden="true"
+            ></i>
+            {{getRemainingTime expiredDate}}
+          </p>
+          <p
+            style="font-size: 0.6rem;"
+            class="d-flex justify-content-between mb-0"
+          >
+            <i class="fa fa-trophy text-warning" aria-hidden="true">
+              {{maskBidderName bidderName}}</i>
+          </p>
+          {{#if (isSellerOfThis this.sellerId user.userId)}}<div>&nbsp;</div>{{else}}
+
+            {{#if (isUser user.roleId)}}
+              {{#if (isFavorite proId FavoriteProduct)}}
+                <form
+                  id="likebutton1{{proId}}{{typeHome}}"
+                  method="post"
+                  style="text-align: end;"
+                  action="/product"
+                >
+                  <button
+                    class="likebtn"
+                    type="submit"
+                    id="unlikeButton{{proId}}{{typeHome}}"
+                    onclick="buttonLikeV2({{proId}},{{typeHome}});likeAction1({{proId}},{{typeHome}});"
+                    style="color: red; background-color: transparent;
+              background-repeat: no-repeat;
+              border: none;"
+                  >
+                    <span class="fa fa-heart"></span>
+                    <input type="hidden" value="unlike" name="content" />
+                    <input type="hidden" value="{{proId}}" name="proId" />
+                  </button>
+                </form>
+
+                <form
+                  id="likebutton2{{proId}}{{typeHome}}"
+                  method="post"
+                  style="text-align: end;"
+                  action="/product"
+                >
+                  <button
+                    class="likebtn"
+                    type="submit"
+                    id="likeButton{{proId}}{{typeHome}}"
+                    onclick="buttonLikeV2({{proId}},{{typeHome}});likeAction2({{proId}},{{typeHome}});"
+                    style="color: red; background-color: transparent;
+              background-repeat: no-repeat;
+              border: none;"
+                    hidden
+                  >
+                    <span class="fa fa-heart-o"></span>
+                    <input type="hidden" value="like" name="content" />
+                    <input type="hidden" value="{{proId}}" name="proId" />
+                  </button>
+                </form>
+              {{else}}
+                <form
+                  id="likebutton3{{proId}}{{typeHome}}"
+                  method="post"
+                  style="text-align: end;"
+                  action="/product"
+                >
+                  <button
+                    class="likebtn"
+                    type="submit"
+                    id="likeButton{{proId}}{{typeHome}}"
+                    onclick="buttonLikeV1({{proId}},{{typeHome}});likeAction3({{proId}},{{typeHome}});"
+                    style="color: red;background-color: transparent;
+              background-repeat: no-repeat;
+              border: none;"
+                  >
+                    <span class="fa fa-heart-o"></span>
+                    <input type="hidden" value="like" name="content" />
+                    <input type="hidden" value="{{proId}}" name="proId" />
+                  </button>
+                </form>
+                <form
+                  id="likebutton4{{proId}}{{typeHome}}"
+                  method="post"
+                  style="text-align: end;"
+                  action="/product"
+                >
+                  <button
+                    class="likebtn"
+                    type="submit"
+                    id="unlikeButton{{proId}}{{typeHome}}"
+                    onclick="buttonLikeV1({{proId}},{{typeHome}});likeAction4({{proId}},{{typeHome}});"
+                    style="color: red;background-color: transparent;
+              background-repeat: no-repeat;
+              border: none;"
+                    hidden
+                  >
+                    <span class="fa fa-heart"></span>
+                    <input type="hidden" value="unlike" name="content" />
+                    <input type="hidden" value="{{proId}}" name="proId" />
+                  </button>
+                </form>
+              {{/if}}
+            {{/if}}
+          {{/if}}
+        </div>
+        <ul>
+          <li><i class="fa fa-gavel text-danger" aria-hidden="true"></i>
+            {{this.numberOfBids}}
+          </li>
+          {{#if (isBidderOrSeller user.roleId)}}
+            <li><a
+                href="/product?proId={{this.proId}}"
+                style="font-size:xx-small;"
+              >Bid now</a></li>
+          {{/if}}
+
+          {{#if (isAdmin user.roleId)}}
+            <form method="post" action="/admin/deleteProduct">
+              <input type="hidden" value="disableProduct" name="content" />
+              <input type="hidden" value={{this.proId}} name="proId" />
+              <button
+                type="submit"
+                class="btn btn-sm btn-danger"
+                style="font-size: 15px;"
+              > <i class="fa fa-ban" aria-hidden="true"></i></button>
+            </form>
+
+          {{/if}}
+        </ul>
+      </div>
+    </div>
+  </div>
+{{/if}}

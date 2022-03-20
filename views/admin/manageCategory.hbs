@@ -1,0 +1,113 @@
+{{#section "stylesheets"}}
+<link rel="stylesheet" href="/public/css/admin/manageCategory.css">
+{{/section}}
+
+<div id="manage-categories" style="background-color: white;" class="rounded-3 p-3">
+    <h1 class="fw-bold h3">Manage categories</h1>
+    <button id="addRootButton" class="btn btn-primary" role="button" onclick="actionAddRoot()">
+        Add new root category
+    </button>
+    <ul class="list-group list-group-flush products-root mt-3">
+     
+     
+        <li class="list-group-item list-group-item-action border border-2 rounded-2">
+                <p class="d-flex flex-row justify-content-between">
+                    <span>
+                        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                        Category Name
+
+                        <div style="text-align: end;">
+                            <form method="get" action="/admin/manage/categories/addChildCat">
+        
+                                <button type="submit" class="btn btn-success">
+                                  <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                                </button>
+                            </form>
+
+                            <form method="get" action="/admin/manage/categories/editCat">
+                            
+                                <button type="submit" class="btn btn-primary">
+                                  <i class="fa fa-pencil-square-o"
+                                        aria-hidden="true"></i>
+                                </button>
+                            </form>
+                            <button  class="btn btn-danger deleteRootCate">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                           
+                        </div>
+
+                    </span>
+                </p>
+        </li>
+
+
+        <li class="list-group-item list-group-item-action border border-2 rounded-2">
+                <p class="d-flex flex-row justify-content-between">
+                    <span>
+                        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                        Category Name 2
+
+                        <div style="text-align: end;">
+
+                            <form method="get" action="/admin/manage/categories/addChildCat">
+                             
+                                <button type="submit" class="btn btn-success">
+                                  <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                                </button>
+                            </form>
+
+                            <form method="get" action="/admin/manage/categories/editCat">
+                            
+                                <button type="submit" class="btn btn-primary">
+                                  <i class="fa fa-pencil-square-o"
+                                        aria-hidden="true"></i>
+                                </button>
+                            </form>
+                            <button  class="btn btn-danger deleteRootCate">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                           
+                        </div>
+
+                    </span>
+                </p>
+        </li>
+
+     
+
+
+    </ul>
+    <form id="deleteRootCate" method="post" action="/admin/manage/categories">
+        <input type="hidden" value="deleteRootCate" name="content">
+        <input id="rootCateId" type="hidden" name="rootCateId">    
+    </form>
+    <form id="deleteChildCate" method="post" action="/admin/manage/categories">
+        <input type="hidden" value="deleteChildCate" name="content">
+        <input id="childCateId" type="hidden" name="childCateId">
+        
+    </form>
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
+        <div style="top: 50%; transform: translateY(-50%)" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body" id="confirmMessage">
+                </div>
+                <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-default"
+                        id="confirmOk"
+                    >Ok</button>
+                    <button
+                        type="button"
+                        class="btn btn-default"
+                        id="confirmCancel"
+                    >Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{#section "scripts"}}
+<script src="/public/js/admin/manageCategory.js"></script>
+{{/section}}
